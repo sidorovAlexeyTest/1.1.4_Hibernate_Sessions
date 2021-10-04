@@ -34,7 +34,8 @@ public class Util {
                 .applySetting("hibernate.hbm2ddl.auto", "update")
                 .applySetting("hibernate.connection.url", URL)
                 .applySetting("hibernate.connection.username", USER)
-                .applySetting("hibernate.connection.password", PASSWORD);
+                .applySetting("hibernate.connection.password", PASSWORD)
+                .applySetting("hibernate.show_sql", "false");
         ServiceRegistry serviceRegistry = registryBuilder.build();
         sessionFactory = new Configuration()
                 .addAnnotatedClass(User.class)

@@ -29,7 +29,11 @@ public class UserDaoHibernateImpl implements UserDao {
             session.beginTransaction().commit();
         } catch (HibernateException e) {
             e.printStackTrace();
-            if (transaction != null) transaction.rollback();
+            try {
+                if (transaction != null) transaction.rollback();
+            } catch (HibernateException he) {
+                he.printStackTrace();
+            }
         } finally {
             try {
                 if (session != null) session.close();
@@ -50,7 +54,11 @@ public class UserDaoHibernateImpl implements UserDao {
             session.beginTransaction().commit();
         } catch (HibernateException e) {
             e.printStackTrace();
-            if (transaction != null) transaction.rollback();
+            try {
+                if (transaction != null) transaction.rollback();
+            } catch (HibernateException he) {
+                he.printStackTrace();
+            }
         } finally {
             try {
                 if (session != null) session.close();
@@ -71,7 +79,11 @@ public class UserDaoHibernateImpl implements UserDao {
             session.beginTransaction().commit();
         } catch (HibernateException e) {
             e.printStackTrace();
-            if (transaction != null) transaction.rollback();
+            try {
+                if (transaction != null) transaction.rollback();
+            } catch (HibernateException he) {
+                he.printStackTrace();
+            }
         } finally {
             try {
                 if (session != null) session.close();
@@ -88,12 +100,17 @@ public class UserDaoHibernateImpl implements UserDao {
         try {
             session = Util.getSession();
             transaction = session.getTransaction();
-            User user = (User) session.get(User.class, id);
-            session.delete(user);
+            session.createQuery("DELETE User WHERE id = :id")
+                    .setLong("id", id)
+                    .executeUpdate();
             session.beginTransaction().commit();
         } catch (HibernateException e) {
             e.printStackTrace();
-            if (transaction != null) transaction.rollback();
+            try {
+                if (transaction != null) transaction.rollback();
+            } catch (HibernateException he) {
+                he.printStackTrace();
+            }
         } finally {
             try {
                 if (session != null) session.close();
@@ -115,7 +132,11 @@ public class UserDaoHibernateImpl implements UserDao {
             session.beginTransaction().commit();
         } catch (HibernateException e) {
             e.printStackTrace();
-            if (transaction != null) transaction.rollback();
+            try {
+                if (transaction != null) transaction.rollback();
+            } catch (HibernateException he) {
+                he.printStackTrace();
+            }
         } finally {
             try {
                 if (session != null) session.close();
@@ -138,7 +159,11 @@ public class UserDaoHibernateImpl implements UserDao {
             session.beginTransaction().commit();
         } catch (HibernateException e) {
             e.printStackTrace();
-            if (transaction != null) transaction.rollback();
+            try {
+                if (transaction != null) transaction.rollback();
+            } catch (HibernateException he) {
+                he.printStackTrace();
+            }
         } finally {
             try {
                 if (session != null) session.close();
